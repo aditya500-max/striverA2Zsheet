@@ -1,0 +1,26 @@
+M1// O(nlogn+n+n)
+int isSorted(int n, vector<int> a) {
+    vector<int> b;
+    for(int i=0;i<n;i++){
+        b.push_back(a[i]);
+    }
+    sort(a.begin(),a.end());
+     for(int i=0;i<n;i++){
+        if(a[i]!=b[i]){
+            return 0;
+        }
+    }
+    return 1;
+     
+}
+M2 //Optimised//O(n)
+//best
+int isSorted(int n, vector<int> a) {
+    for(int i=0;i<n-1;i++){
+        if(a[i]>a[i+1]){
+            return 0;
+        }
+    }
+    return 1;
+}
+
