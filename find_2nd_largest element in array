@@ -1,0 +1,53 @@
+https://www.codingninjas.com/codestudio/problems/ninja-and-the-second-order-elements_6581960?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=2
+Method1(brute force)
+tc=O(nlogn)
+sc=O(1)
+#include<bits/stdc++.h>
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    sort(a.begin(),a.end());
+    a.erase(a.begin());
+    a.erase(a.end()-1);
+    vector<int> b;
+    b.push_back(a[n-3]);
+     b.push_back(a[0]);
+    return b;
+}
+//this soln lacks case where arr is like {1,5,6,7,7} here 2nd largest is 6 not n-3;
+
+Method2(optimised)
+tc=O(n)
+sc=O(1)
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    int lar=a[0];
+    for(int i=0;i<n;i++){
+        if(a[i]>lar){
+            lar=a[i];
+        }
+    }
+    int lar2=1;
+    for(int i=0;i<n;i++){
+        if((a[i]>lar2)&&(a[i]!=lar)){
+            lar2=a[i];
+        }
+    }
+     int lar3=a[0];
+    for(int i=0;i<n;i++){
+        if(a[i]<lar3){
+            lar3=a[i];
+        }
+    }
+     int lar4=INT_MAX;
+    for(int i=0;i<n;i++){
+        if((a[i]<lar4)&&(a[i]!=lar3)){
+            lar4=a[i];
+        }
+    }
+    vector<int> b;
+    b.push_back(lar2);
+    b.push_back(lar4);  
+    return b;
+    
+}
+Method3
+//most optimal (require less passes)
+https://takeuforward.org/data-structure/find-second-smallest-and-second-largest-element-in-an-array/
