@@ -1,0 +1,27 @@
+https://practice.geeksforgeeks.org/problems/who-will-win-1587115621/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=who-will-win
+//O(logn)=tc
+//O(1)=sc
+
+ int searchInSorted(int arr[], int N, int K) 
+    { 
+    
+      int i=0;
+      int j=N-1;
+      
+      while(i<=j){
+          int mid=(i+j)/2;
+           if(arr[mid]==K){
+              return 1;
+          }
+          if(arr[mid]>K){
+              j=mid-1;
+          }
+          if(arr[mid]<K){
+              i=mid+1;
+          }
+         
+      }
+      return -1;
+      
+       
+    }
