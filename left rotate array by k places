@@ -1,0 +1,66 @@
+Method1//bruteforce//O(n)=tc
+sc=o(k)
+
+#include <bits/stdc++.h> 
+#include <iostream>
+using namespace std;
+
+void rotate(int arr[],int n,int k){
+      int temp[k];
+      for(int i=0;i<k;i++){
+          temp[i]=arr[i];
+      }
+      for(int i=0;i<n;i++){
+          arr[i]=arr[i+k];
+      }
+      for(int i=0;i<k;i++){
+          arr[n-k+i]=temp[i];
+      }
+      for(int i=0;i<n;i++){
+          cout<<arr[i]<<" ";
+      }
+}
+int main() {
+      int n;
+      cin>>n;
+      int arr[n];
+      for(int i=0;i<n;i++){
+          cin>>arr[i];
+      }
+      int k;
+      cin>>k;
+      rotate(arr,n,k);
+
+
+    return 0;
+}
+Method2//optimal
+tc same
+sc=O(1)
+now to optimise sc we have better method than method1:
+#include <bits/stdc++.h> 
+#include <iostream>
+using namespace std;
+
+void rotate(int arr[],int n,int k){
+      reverse(arr,arr+k);
+      reverse(arr+k,arr+n);
+      reverse(arr,arr+n);
+       for(int i=0;i<n;i++){
+          cout<<arr[i]<<" ";
+      }
+}
+int main() {
+      int n;
+      cin>>n;
+      int arr[n];
+      for(int i=0;i<n;i++){
+          cin>>arr[i];
+      }
+      int k;
+      cin>>k;
+      rotate(arr,n,k);
+
+
+    return 0;
+}
