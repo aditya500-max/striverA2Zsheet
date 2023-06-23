@@ -1,0 +1,20 @@
+https://practice.geeksforgeeks.org/problems/union-of-two-sorted-arrays-1587115621/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=union-of-two-sorted-arrays
+//O(n+m)O(log(n+m))
+vector<int> findUnion(int arr1[], int arr2[], int n, int m)
+    {
+        unordered_set<int>st1;
+        for(int i=0;i<n;i++){
+            st1.insert(arr1[i]);
+        }
+        for(int i=0;i<m;i++){
+            st1.insert(arr2[i]);
+        }
+        vector<int> temp;
+        for(auto it:st1){
+            temp.push_back(it);
+        }
+        sort(temp.begin(),temp.end());
+        return temp;
+    }
+    Method2//optimal//O(N+M)
+    
