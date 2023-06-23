@@ -1,0 +1,33 @@
+https://leetcode.com/problems/missing-number/description/
+M1//xor//O(N)
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n=nums.size();
+        int num=0;
+        int numi=0;
+        for(int i=0;i<n;i++){
+             num=num^nums[i];
+             numi=numi^i;
+        }
+        numi=numi^n;
+        
+        int res=numi^num;
+        return res;
+    }
+};
+M2//more optimised//
+O(N)
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int num=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            num=num+nums[i];
+        }
+        
+        int res=(n*(n+1)/2)-num;
+        return res;
+    }
+};
