@@ -1,0 +1,37 @@
+//beats 100%
+//tc and sc O(n)
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+       vector<int> t1;
+       vector<int> t2;
+       vector<int> t3;
+       
+       
+    
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==0){
+                t1.push_back(0);
+            }
+            if(nums[i]==1){
+                t2.push_back(1);
+            }
+            if(nums[i]==2){
+                t3.push_back(2);
+            }
+        }
+        nums.clear();
+        for(int i=0;i<t1.size();i++){
+              nums.push_back(0);
+        }
+        for(int i=0;i<t2.size();i++){
+              nums.push_back(1);
+        }
+        for(int i=0;i<t3.size();i++){
+              nums.push_back(2);
+        }
+        
+
+    }
+};
