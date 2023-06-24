@@ -1,0 +1,23 @@
+//using Map//O(n)
+//storing key as nums[i] and vallue as its index
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> ans;
+        unordered_map<int,int> mp;
+        for(int i=0;i<nums.size();i++){
+            int comp=target-nums[i];
+            if(mp.count(comp)){
+                ans.push_back(mp[comp]);
+                ans.push_back(i);
+                return ans;
+            }
+            else{
+                mp[nums[i]]=i;
+            }
+        }
+        return {};
+    }
+};
