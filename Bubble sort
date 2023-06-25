@@ -1,0 +1,24 @@
+https://www.youtube.com/watch?v=o4bAoo_gFBU      JENNY
+https://www.geeksforgeeks.org/bubble-sort/
+https://practice.geeksforgeeks.org/problems/bubble-sort/1
+https://www.youtube.com/watch?v=T5fZBG30jGI    BEST & WORST CASE TC ANALYSIS
+
+class Solution
+{
+    public:
+    void bubbleSort(int arr[], int n)
+    { 
+        int counter=1;
+        while(counter<n)
+        {
+        for(int i=0;i<n-counter;i++){
+            if(arr[i+1]<arr[i]){
+                   int temp=arr[i];
+                   arr[i]=arr[i+1];
+                   arr[i+1]=temp;
+            }
+        }
+        counter=counter+1;
+    }
+    }
+};
