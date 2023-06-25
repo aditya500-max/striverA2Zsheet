@@ -1,0 +1,48 @@
+https://www.geeksforgeeks.org/vector-in-cpp-stl/
+https://www.hackerrank.com/challenges/vector-sort/problem?h_r=profile
+
+//vector sort 
+
+//vector declaration
+vector<int> v;
+
+//for sorting 
+sort(v.begin(),v.end());
+
+//adding element at add
+v.push_back(x);
+
+//pop
+v.pop_back();
+
+//range based for loop for printing all elements:
+void display(const vector<int>& v) {
+    for (const int& elem : v) {
+        cout << elem << endl;
+    }
+}
+
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    int N ;
+    cin>>N;
+    int element;
+    vector<int> v;
+    for(int i=0;i<N;i++){
+        cin>>element;
+        v.push_back(element);
+    }
+    sort(v.begin(),v.end());
+    for(int i=0;i<N;i++){
+        cout<<v.at(i)<< " ";
+        }    return 0;
+}
+
