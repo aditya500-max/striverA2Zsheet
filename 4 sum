@@ -1,0 +1,218 @@
+//best hashing  O(n square)// storing sum then apply x-sum
+// A hashing based CPP program
+// to find if there are
+// four elements with given sum.
+#include <bits/stdc++.h>
+using namespace std;
+
+// The function finds four
+// elements with given sum X
+void findFourElements(int arr[], int n, int X)
+{
+	// Store sums of all pairs
+	// in a hash table
+	unordered_map<int, pair<int, int> > mp;
+	for (int i = 0; i < n - 1; i++)
+		for (int j = i + 1; j < n; j++)
+			mp[arr[i] + arr[j]] = { i, j };
+
+	// Traverse through all pairs and search
+	// for X - (current pair sum).
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			int sum = arr[i] + arr[j];
+
+			// If X - sum is present in hash table,
+			if (mp.find(X - sum) != mp.end()) {
+
+				// Making sure that all elements are
+				// distinct array elements and an element
+				// is not considered more than once.
+				pair<int, int> p = mp[X - sum];
+				if (p.first != i && p.first != j
+					&& p.second != i && p.second != j) {
+					cout << arr[i] << ", " << arr[j] << ", "
+						<< arr[p.first] << ", "
+						<< arr[p.second];
+					return;
+				}
+			}
+		}
+	}
+}
+
+// Driver code
+int main()
+{
+	int arr[] = { 10, 20, 30, 40, 1, 2 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	int X = 91;
+	
+	// Function call
+	findFourElements(arr, n, X);
+	return 0;
+}
+//M2 //storing pair sums then sort and 2 pointer//n square log n
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+
+vector<vector<int>> fourSum(vector<int>& nums, int target) {
+    vector<vector<int>> result;
+    int n = nums.size();
+
+    // Edge case: If the array has less than four elements, return empty result
+    if (n < 4) {
+        return result;
+    }
+
+    // Create an auxiliary array to store the sums of all possible pairs
+    vector<int> aux;
+    unordered_map<int, vector<pair<int, int>>> pairSums;
+
+    // Calculate the sums of all possible pairs
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            int sum = nums[i] + nums[j];
+            aux.push_back(sum);
+            pairSums[sum].push_back({i, j});
+        }
+    }
+
+    // Sort the auxiliary array
+    sort(aux.begin(), aux.end());
+
+    // Iterate through the auxiliary array using two pointers
+    int left = 0;
+    int right = aux.size() - 1;
+
+    while (left < right) {
+        int sum = aux[left] + aux[right];
+
+        if (sum == target) {
+            int leftIndex = left;
+            int rightIndex = right;
+
+            // Check for common elements in the pairs
+            while (left < right && aux[left] == aux[leftIndex]) {
+                left++;
+            }
+
+            while (left < right && aux[right] == aux[rightIndex]) {
+                right--;
+            }
+
+            // Retrieve the pairs from the map
+            for (auto& pair1 : pairSums[aux[leftIndex]]) {
+                for (auto& pair2 : pairSums[aux[rightIndex]]) {
+                    if (pair1.first != pair2.first && pair1.first != pair2.second &&
+                        pair1.second != pair2.first && pair1.second != pair2.second) {
+                        vector<int> quadruplet = {nums[pair1.first], nums[pair1.second],
+                                                  nums[pair2.first], nums[pair2.second]};
+                        sort(quadruplet.begin(), quadruplet.end());
+                        result.push_back(quadruplet);
+                    }
+                }
+            }
+        } else if (sum < target) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+
+    // Remove duplicates from the result
+    sort(result.begin(), result.end());
+    result.erase(unique(result.begin(), result.end()), result.end());
+
+    return result;
+}
+
+int main() {
+    vector<int> nums = {1, 0, -1, 0, -2, 2};
+    int target = 0;
+
+    vector<vector<int>> result = fourSum(nums, target);
+
+    // Print the result
+    for (const auto& quadruplet : result) {
+        for (int num : quadruplet) {
+            cout << num << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+//normal 2 pointer  n cube
+// C++ program for to print all combination
+// of 4 elements in A[] with sum equal to X
+#include<bits/stdc++.h>
+using namespace std;
+
+/* Following function is needed
+for library function qsort(). */
+int compare (const void *a, const void * b)
+{
+	return ( *(int *)a - *(int *)b );
+}
+
+/* A sorting based solution to print
+all combination of 4 elements in A[]
+with sum equal to X */
+void find4Numbers(int A[], int n, int X)
+{
+	int l, r;
+
+	// Sort the array in increasing
+	// order, using library function
+	// for quick sort
+	qsort (A, n, sizeof(A[0]), compare);
+
+	/* Now fix the first 2 elements
+	one by one and find
+	the other two elements */
+	for (int i = 0; i < n - 3; i++)
+	{
+		for (int j = i+1; j < n - 2; j++)
+		{
+			// Initialize two variables as
+			// indexes of the first and last
+			// elements in the remaining elements
+			l = j + 1;
+			r = n-1;
+
+			// To find the remaining two
+			// elements, move the index
+			// variables (l & r) toward each other.
+			while (l < r)
+			{
+				if( A[i] + A[j] + A[l] + A[r] == X)
+				{
+					cout << A[i]<<", " << A[j] <<
+						", " << A[l] << ", " << A[r];
+					l++; r--;
+				}
+				else if (A[i] + A[j] + A[l] + A[r] < X)
+					l++;
+				else // A[i] + A[j] + A[l] + A[r] > X
+					r--;
+			} // end of while
+		} // end of inner for loop
+	} // end of outer for loop
+}
+
+/* Driver code */
+int main()
+{
+	int A[] = {1, 4, 45, 6, 10, 12};
+	int X = 21;
+	int n = sizeof(A) / sizeof(A[0]);
+	find4Numbers(A, n, X);
+	return 0;
+}
+
+// This code is contributed by rathbhupendra
