@@ -1,5 +1,26 @@
 https://takeuforward.org/data-structure/program-to-generate-pascals-triangle/
-
+https://leetcode.com/problems/pascals-triangle/submissions/988707042/
 Variation 1
 Variation 2
 Variation 3
+
+
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> ans;
+        for(int row=1;row<=numRows;row++){
+            long long answ=1;
+            vector<int> rowans;
+            rowans.push_back(1);
+            for(int col=1;col<row;col++){
+                answ=answ*(row-col);
+                answ=answ/col;
+                rowans.push_back(answ);
+            }
+            ans.push_back(rowans);
+        }
+        return ans;
+
+    }
+};
