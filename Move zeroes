@@ -19,3 +19,24 @@ public:
         }
     }
 };
+//M2//recursion method:
+void moveZeroes(vector<int>& nums) {
+        ios::sync_with_stdio(0);
+        if(nums.size()==0){
+            return;
+        }
+        int a=nums[0];
+        nums.erase(nums.begin());
+        moveZeroes(nums);
+        if(a==0){
+            nums.push_back(0);
+            return;
+        }
+        else{
+            nums.insert(nums.begin(),a);
+            return;
+        }
+        
+       
+        
+    }
