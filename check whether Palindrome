@@ -1,0 +1,28 @@
+https://leetcode.com/problems/palindrome-number/
+
+//Method1- using to_string method
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x<0){return false;}
+        string a=to_string(x);
+        int p=0;int q=a.length()-1;
+        if(p==q){return true;}
+        while(p<q){
+            if(a[p]!=a[q]){return false;}
+            p++;q--;
+        }
+        return true;
+    }
+};
+//Method2- direct reverse stl
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string str=to_string(x);
+        string str1=str;
+        reverse(str1.begin(),str1.end());
+        return str1==str;
+    }
+};
+//Method3 - first reverse a number using %10 concept then compare reversed no. with original
