@@ -1,0 +1,28 @@
+M1: simple approach O(min(n,m))
+M2: Euclidian (O(log phie min(m,n))
+
+int calcGCD(int n, int m){
+    // Write your code here.
+    int a=min(n,m);
+    int i=a/2;
+    if(n%m==0||m%n==0){
+        return a;
+    }
+    while(i!=1){
+       if(n%i==0&&m%i==0){
+           return i;
+        
+       } 
+       i--;
+    }
+    return 1;
+}
+M2:
+int calcGCD(int n, int m){
+    while(m!=0&&n!=0){
+        if(m>=n){m=m%n;}
+        else{n=n%m;}
+    }
+    if(m==0){return n;}
+    else{return m;}
+}
