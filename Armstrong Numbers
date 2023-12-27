@@ -1,0 +1,13 @@
+#include<math.h>
+bool checkArmstrong(int n){
+	string str=to_string(n);
+	int b=str.size();
+	int ans=0;
+	int temp=n;
+    while(n!=0){
+		int d=n%10;
+        ans=ans+pow(d,b);
+		n=n/10;
+	}
+	return temp==ans;
+}
