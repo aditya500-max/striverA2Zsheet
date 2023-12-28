@@ -1,0 +1,14 @@
+//M1: bruteforce //check all from 2 to n //O(n)
+//M2: bruteforce //from 2 to n/2
+//M3: pair concept so check from 2 to sqrt(n) //O(root n)
+bool isPrime(int n)
+{
+	// Write your code here.
+	if(n==1){return false;}
+	if(n==2){return true;}
+	for(int i=2;i<=sqrt(n);i++){
+		if(n%i==0){return false;}
+		
+	}
+	return true;
+}
