@@ -1,0 +1,21 @@
+2 pass solution: O(n)
+
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    // Write your code here.
+    int max=0;
+    int min=INT_MAX;
+    for(auto it:a){
+        if(it>max){max=it;}
+        if(it<min){min=it;}
+    }
+    int max1=0;
+    int min1=INT_MAX;
+    for(auto it:a){
+        if(it>max1&&it!=max){max1=it;}
+        if(it<min1&&it!=min){min1=it;}
+    }
+    vector<int>ans;
+    ans.push_back(max1);
+    ans.push_back(min1);
+    return ans;
+}
