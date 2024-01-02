@@ -1,0 +1,27 @@
+https://www.codingninjas.com/studio/problems/k-most-occurrent-numbers_625382?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM&count=25&page=1&search=&sort_entity=order&sort_order=ASC
+
+vector<int> getFrequencies(vector<int>& v) {
+    // Write Your Code Here
+
+    unordered_map<int,int> uo;
+    for(int i=0;i<v.size();i++){
+        uo[v[i]]++;
+    }
+    int max=INT_MIN;int max1;
+    int min=INT_MAX;int min1;
+    for(auto it:uo){
+      if(it.second==max&&it.first<max1){max=it.second; max1=it.first;}
+      if(it.second>max){max=it.second;max1=it.first;}
+    }
+    for(auto it:uo){
+        if(it.second==min&&it.first<min1){min=it.second; min1=it.first;}
+      if(it.second<min){min=it.second;min1=it.first;}
+    }
+    vector<int>ans;
+    ans.push_back(max1);
+    ans.push_back(min1);
+    return ans;
+
+}
+TC: O(N)
+SC: O(N) in worst case where each element has a frequncy of 1
