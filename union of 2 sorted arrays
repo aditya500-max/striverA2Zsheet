@@ -1,5 +1,6 @@
 https://practice.geeksforgeeks.org/problems/union-of-two-sorted-arrays-1587115621/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=union-of-two-sorted-arrays
 //O(n+m)O(log(n+m))
+https://www.codingninjas.com/studio/problems/sorted-array_6613259?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=SUBMISSION
 vector<int> findUnion(int arr1[], int arr2[], int n, int m)
     {
         unordered_set<int>st1;
@@ -17,4 +18,38 @@ vector<int> findUnion(int arr1[], int arr2[], int n, int m)
         return temp;
     }
     Method2//optimal//O(N+M)
+vector < int > sortedArray(vector < int > a, vector < int > b) {
+    // Write your code here
+    int i=0;
+    int j=0;
+    vector<int> ans;
+    while(i<a.size()&&j<b.size()){
+    if(a[i]<=b[j]){
+        if(ans.empty()||ans.back()!=a[i]){
+            ans.push_back(a[i]);
+        }
+        i++;
+    }
+    else{
+        if(ans.empty()||ans.back()!=b[j]){
+            ans.push_back(b[j]);
+        }
+        j++;
+    }
+    }
+    while(i<a.size()){
+        if(ans.back()!=a[i]){
+            ans.push_back(a[i]);
+        }
+        i++;
+    }
+    while(j<b.size()){
+        if(ans.back()!=b[j]){
+            ans.push_back(b[j]);
+        }
+        j++;
+    }
+    return ans;
+}
+
     
