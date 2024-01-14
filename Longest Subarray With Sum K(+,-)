@@ -1,0 +1,26 @@
+//bruteforce solution in O(n^3) and O(n^2) time
+//Optimal solution for subarrays with both + and - elements:
+//TC and SC- O(N)
+
+#include <bits/stdc++.h> 
+using namespace std;
+int getLongestSubarray(vector<int>& nums, int k){
+   unordered_map<long long,int> mp;
+    int n=nums.size();
+    long long sum=0;
+    int maxlen=0;
+    
+    for(int i=0;i<n;i++){
+        sum+=nums[i];
+        if(sum==k){
+              maxlen=i+1;
+        }
+        if(mp.find((sum-k))!=mp.end()){
+            maxlen=max(maxlen,i-mp[sum-k]);
+        }
+        if(mp.find(sum)==mp.end()){
+            mp[sum]=i;
+        }
+    }
+    return maxlen;
+}
