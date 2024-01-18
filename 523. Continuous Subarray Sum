@@ -1,0 +1,32 @@
+//Very nice concept of hashmap and mod
+=>Very imp. Concept of subarray [similar to sum,x then store this in a map and find x-k every time like longest subarray sum problem]
+  
+        // current one: sum_i = m*k + modk
+        // previous one: sum_j = n*k + modk
+        // Thus,
+        // sum_i - sum_j = (m - n) *k
+        
+        //so if two runningSum mod k have the same values, then when they are subtracted, they are bound to be multiples of k
+Run a loop, everytime calculate sum=sum%k after doing sum=sum+nums[i] each time, then check whether this remainder is already present in map or not, if yes then return true. As if mod k1=mod k2 at any time then that subarray sum is a multiple of k. 
+
+
+class Solution {
+public:
+    bool checkSubarraySum(vector<int>& nums, int k) {
+        int sum=0;
+        unordered_map<int,int>mp;
+        if(nums.size()<2){return false;}
+        for(int i=0;i<nums.size();i++){
+            sum+=nums[i];
+            sum=sum%k;
+            if(sum==0&&i>0){return true;}
+           if((mp.find(sum)!=mp.end())&&(i-mp[sum]>1)){
+               return true;
+           }
+           else{
+               if(nums[i]%k!=0){mp[sum]=i;}
+           }
+        }
+        return false;
+    }
+};
